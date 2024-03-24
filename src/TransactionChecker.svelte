@@ -1,7 +1,5 @@
 <script>
 
-    import axios from 'axios';
-
     const GR_PER_TX = 2.5; //source: https://tezos.com/carbon/
     export let nbr_tx;
     export let co2_emit;
@@ -10,13 +8,18 @@
     let status = true;
 
     const fetchTransactionsCount = async () => {
-        const address = await walletHandler.getPKH();
-        const url = `https://api.ghostnet.tzkt.io/v1/accounts/${address}/operations`;
         try {
-            const axiosResponse = await axios.get(url);
-            co2_emit = axiosResponse.data.length * GR_PER_TX;
-            status = false;
-            return axiosResponse.data.length;
+            const address = await walletHandler.getPKH();
+            const url = `https://api.ghostnet.tzkt.io/v1/accounts/${address}/operations`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            co2_emit = data.length * GR_PER_TX; // Assuming GR_PER_TX is a predefined constant
+            status = false; // Assuming 'status' is a variable you want to set to false upon successful fetch
+            return data.length;
         } catch (e) {
             console.error("error occurred when fetching tx: ", e);
         }

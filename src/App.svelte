@@ -58,7 +58,7 @@
         <a href="#section1" class="nav-link">Home</a>
         <a href="#section2" class="nav-link">Checker</a>
         <a href="#section3" class="nav-link">Associations</a>
-        <a href="#section4" class="nav-link">About Us</a>
+<!--        <a href="#section4" class="nav-link">About Us</a>-->
     </nav>
     <div class="wallet-and-balance-container">
         {#key bankCO3}
