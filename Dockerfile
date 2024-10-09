@@ -13,9 +13,7 @@ RUN npm install
 # Copy project files into the docker image
 COPY . .
 
-# Build the app
-RUN npm run build
 
 EXPOSE 4173 
 
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "dev", "--host"]
