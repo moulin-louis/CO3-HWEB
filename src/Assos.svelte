@@ -8,7 +8,6 @@
     export let path_image;
     export let description;
     export let withdrawButtonActive;
-    export let withdrawButtonLabel;
     export let tezos;
     export let walletHandler;
     export let bankCO3;
